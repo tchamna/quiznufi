@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Nufi-French Quiz</h1>
+    <form method="post" action="{{ url_for('quiz') }}">
+        {% for question in quiz_data %}
+        <div>
+            <label>{{ question.nufi }}:</label>
+            <input type="text" name="{{ loop.index0 }}">
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

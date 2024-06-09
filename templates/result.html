@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            word-wrap: break-word; /* Ensure text wraps within the cell */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .correct {
+            color: green;
+        }
+        .wrong {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Results</h1>
+    <p>Your Score: {{ score }} / {{ total }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Fe'efe'e (Nufi)</th>
+                <th>Your Answer</th>
+                <th>Correct Answer</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.nufi }}</td>
+                <td>{{ result.user_answer }}</td>
+                <td>{{ result.correct_answer }}</td>
+                <td class="{% if result.is_correct %}correct{% else %}wrong{% endif %}">
+                    {% if result.is_correct %}
+                    Correct
+                    {% else %}
+                    Wrong
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('quiz') }}">Try Again</a>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
